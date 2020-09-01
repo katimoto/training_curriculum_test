@@ -8,7 +8,7 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    Plan.create(plan_params)
+    Plan.create(plan_params[:room_id])
     redirect_to action: :index
   end
 
@@ -38,5 +38,8 @@ class CalendarsController < ApplicationController
       @week_days.push(days)
     end
 
+    def plan_params
+      params.require(:date)
+    end
   end
 end
